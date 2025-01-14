@@ -1,0 +1,4 @@
+pandas
+numpy 
+plotly #for dynamic data visualization
+nbformat #just incase u get error while using plotly

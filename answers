@@ -1,0 +1,202 @@
+Here are Python code snippets for each question using `pandas` for data manipulation and `plotly.express` (or other libraries) for visualization. Ensure your data is loaded into a DataFrame (`data`) and all required columns are pre-processed.
+
+---
+
+### **1. Total Sales, Profit, and Quantity for Each Year**
+```python
+import plotly.express as px
+
+yearly_data = data.groupby('order_year').agg({'Sales': 'sum', 'Profit': 'sum', 'Quantity': 'sum'}).reset_index()
+
+fig = px.bar(yearly_data, x='order_year', y=['Sales', 'Profit'], barmode='group', title="Total Sales and Profit by Year")
+fig.show()
+```
+
+---
+
+### **2. Regions and States Generating Highest and Lowest Profits**
+#### Region-wise Comparison
+```python
+region_data = data.groupby('Region')['Profit'].sum().reset_index()
+fig = px.bar(region_data, x='Region', y='Profit', title="Profit by Region")
+fig.show()
+```
+
+#### State-wise Heatmap
+```python
+state_data = data.groupby('State')['Profit'].sum().reset_index()
+fig = px.choropleth(state_data, locations='State', locationmode='USA-states', color='Profit', scope="usa", title="Profit by State")
+fig.show()
+```
+
+---
+
+### **3. Top 10 Most Profitable Products**
+```python
+top_products = data.groupby('Product Name')['Profit'].sum().nlargest(10).reset_index()
+fig = px.bar(top_products, x='Profit', y='Product Name', orientation='h', title="Top 10 Most Profitable Products")
+fig.show()
+```
+
+---
+
+### **4. Categories and Sub-Categories Contribution to Sales and Profit**
+```python
+category_data = data.groupby(['Category', 'Sub-Category'])[['Sales', 'Profit']].sum().reset_index()
+fig = px.treemap(category_data, path=['Category', 'Sub-Category'], values='Sales', color='Profit', title="Sales and Profit by Category and Sub-Category")
+fig.show()
+```
+
+---
+
+### **5. Top 10 Customers by Total Sales**
+```python
+top_customers = data.groupby('Customer Name')['Sales'].sum().nlargest(10).reset_index()
+fig = px.bar(top_customers, x='Sales', y='Customer Name', orientation='h', title="Top 10 Customers by Sales")
+fig.show()
+```
+
+---
+
+### **6. Most Profitable Customer Segments**
+```python
+segment_data = data.groupby('Segment')['Profit'].sum().reset_index()
+fig = px.pie(segment_data, names='Segment', values='Profit', title="Profit by Customer Segment")
+fig.show()
+```
+
+---
+
+### **7. Distribution of Discounts and Profit Impact**
+```python
+fig = px.scatter(data, x='Discount', y='Profit', title="Discount vs. Profit")
+fig.show()
+```
+
+---
+
+### **8. Most Commonly Used Shipping Mode**
+```python
+ship_mode_data = data['Ship Mode'].value_counts().reset_index()
+fig = px.pie(ship_mode_data, names='index', values='Ship Mode', title="Shipping Modes Distribution")
+fig.show()
+```
+
+---
+
+### **9. Order Patterns by Day of the Week**
+```python
+orders_by_day = data.groupby('order_day of week').size().reset_index(name='Order Count')
+fig = px.line(orders_by_day, x='order_day of week', y='Order Count', title="Order Count by Day of Week")
+fig.show()
+```
+
+---
+
+### **10. Time Taken Between Order and Ship Dates by Region**
+```python
+data['Processing Time'] = (pd.to_datetime(data['Ship Date']) - pd.to_datetime(data['Order Date'])).dt.days
+region_time = data.groupby('Region')['Processing Time'].mean().reset_index()
+fig = px.box(data, x='Region', y='Processing Time', title="Processing Time by Region")
+fig.show()
+```
+
+---
+
+### **11. Monthly Sales and Profits Over the Years**
+```python
+monthly_data = data.groupby(['order_year', 'order_month'])[['Sales', 'Profit']].sum().reset_index()
+fig = px.line(monthly_data, x='order_month', y='Sales', color='order_year', title="Monthly Sales by Year")
+fig.show()
+```
+
+---
+
+### **12. Busiest Months for Orders**
+```python
+busiest_months = data['order_month'].value_counts().reset_index()
+fig = px.bar(busiest_months, x='index', y='order_month', title="Order Counts by Month")
+fig.show()
+```
+
+---
+
+### **13. Profit Margin by Day of the Week**
+```python
+data['Profit Margin'] = (data['Profit'] / data['Sales']) * 100
+profit_by_day = data.groupby('order_day of week')['Profit Margin'].mean().reset_index()
+fig = px.line(profit_by_day, x='order_day of week', y='Profit Margin', title="Profit Margin by Day of the Week")
+fig.show()
+```
+
+---
+
+### **14. Sub-Category with Highest Sales in Each Category**
+```python
+subcategory_data = data.groupby(['Category', 'Sub-Category'])['Sales'].sum().reset_index()
+fig = px.bar(subcategory_data, x='Sub-Category', y='Sales', color='Category', barmode='group', title="Sales by Sub-Category within Each Category")
+fig.show()
+```
+
+---
+
+### **15. Correlation of Quantity Sold with Profit**
+```python
+fig = px.scatter(data, x='Quantity', y='Profit', color='Category', title="Quantity Sold vs. Profit")
+fig.show()
+```
+
+---
+
+### **16. Loss-Making Products**
+```python
+loss_products = data[data['Profit'] < 0].groupby('Product Name')['Profit'].sum().reset_index()
+fig = px.bar(loss_products, x='Profit', y='Product Name', orientation='h', title="Loss-Making Products")
+fig.show()
+```
+
+---
+
+### **17. Correlation Between Discounts and Profit Margins**
+```python
+fig = px.scatter(data, x='Discount', y='Profit Margin', title="Discount vs. Profit Margin")
+fig.show()
+```
+
+---
+
+### **18. Profits by Discount Ranges**
+```python
+data['Discount Range'] = pd.cut(data['Discount'], bins=[0, 0.1, 0.2, 0.3, 0.5, 1], labels=["0-10%", "10-20%", "20-30%", "30-50%", "50-100%"])
+discount_profit = data.groupby('Discount Range')['Profit'].sum().reset_index()
+fig = px.bar(discount_profit, x='Discount Range', y='Profit', title="Profit by Discount Range")
+fig.show()
+```
+
+---
+
+### **19. Top Cities by Revenue and Profit**
+```python
+city_data = data.groupby('City')[['Sales', 'Profit']].sum().nlargest(10, 'Sales').reset_index()
+fig = px.bar(city_data, x='City', y=['Sales', 'Profit'], title="Top Cities by Revenue and Profit")
+fig.show()
+```
+
+---
+
+### **20. Variation Across Postal Codes**
+```python
+postal_data = data.groupby('Postal Code')[['Sales', 'Profit', 'Quantity']].sum().reset_index()
+fig = px.scatter_mapbox(
+    postal_data,
+    lat='Latitude',  # Replace with actual lat/lon columns
+    lon='Longitude',
+    size='Sales',
+    color='Profit',
+    title="Sales and Profits by Postal Codes",
+    mapbox_style="carto-positron"
+)
+fig.show()
+```
+
+These snippets assume your DataFrame is prepared correctly. Adjust column names if necessary. Let me know if you need clarification or adjustments!

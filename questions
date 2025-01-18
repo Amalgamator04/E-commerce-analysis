@@ -1,66 +1,66 @@
 ----General Business Performance
---What are the total sales, profit, and quantity of products sold for each year?
+# --What are the total sales, profit, and quantity of products sold for each year?
 Visualization: Line chart or bar chart showing sales and profit trends over the years.
 
---Which regions and states generate the highest and lowest profits?
+# --Which regions and states generate the highest and lowest profits?
 Visualization: Heatmap for state-wise performance, bar charts for region-wise comparison.
 
---What are the top 10 most profitable products?
+# --What are the top 10 most profitable products?
 Visualization: Horizontal bar chart showing product names and profit values.
 
---Which categories and sub-categories contribute the most to sales and profit?
+# --Which categories and sub-categories contribute the most to sales and profit?
 Visualization: Treemap or stacked bar chart.
 
 ----Customer Behavior
---Who are the top 10 customers in terms of total sales?
+# --Who are the top 10 customers in terms of total sales?
 Visualization: Horizontal bar chart of customer names vs. total sales.
 
---Which customer segments (e.g., Corporate, Consumer, Home Office) are the most profitable?
+# --Which customer segments (e.g., Corporate, Consumer, Home Office) are the most profitable?
 Visualization: Pie chart or bar chart comparing segments.
 
---What is the distribution of discounts provided to customers, and how do they affect profits?
+# --What is the distribution of discounts provided to customers, and how do they affect profits?
 Visualization: Scatter plot of discount vs. profit.
 
 ----Shipping and Order Trends
---What is the most commonly used shipping mode, and how does it impact delivery time?
+# --What is the most commonly used shipping mode, and how does it impact delivery time?
 Visualization: Pie chart for shipping modes, box plot for delivery times by mode.
 
---Are there any patterns in the number of orders placed on different days of the week?
+# --Are there any patterns in the number of orders placed on different days of the week?
 Visualization: Line chart showing order count by day of the week.
 
---What is the average time taken between order and ship dates, and does it vary by region?
+# --What is the average time taken between order and ship dates, and does it vary by region?
 Visualization: Box plot comparing regions.
 
 ----Time-Based Analysis
---How do monthly sales and profits vary over the years?
+#--How do monthly sales and profits vary over the years?
 Visualization: Line chart with a separate line for each year.
 
---What are the busiest months in terms of order count?
+# --What are the busiest months in terms of order count?
 Visualization: Bar chart showing order counts for each month.
 
---Does the profit margin change over the days of the week?
+# --Does the profit margin change over the days of the week?
 Visualization: Line chart for profit margin by day of the week.
 
 ----Product Analysis
---Which sub-category has the highest sales within each category?
+# --Which sub-category has the highest sales within each category?
 Visualization: Stacked bar chart or grouped bar chart.
 
---How does product quantity sold correlate with profit across different categories?
+# --How does product quantity sold correlate with profit across different categories?
 Visualization: Scatter plot with a regression line.
 
---Are there any specific products that consistently result in losses?
+# --Are there any specific products that consistently result in losses?
 Visualization: Table or bar chart showing loss-making products.
 
 ----Discount and Profitability Analysis
---Is there a correlation between discounts and profit margins?
+# --Is there a correlation between discounts and profit margins?
 Visualization: Scatter plot with trendline.
 
---Which discount ranges (e.g., 0-10%, 10-20%) lead to the highest profits?
+# --Which discount ranges (e.g., 0-10%, 10-20%) lead to the highest profits?
 Visualization: Bar chart with profit by discount range.
 
 ----Region and City Analysis
---Which cities generate the highest revenue and profit?
+# --Which cities generate the highest revenue and profit?
 Visualization: Bar chart of top cities by revenue and profit.
 
---How do sales, profits, and order quantities vary across different postal codes?
+# --How do sales, profits, and order quantities vary across different postal codes?
 Visualization: Map with markers for postal codes, scaled by performance metrics.
